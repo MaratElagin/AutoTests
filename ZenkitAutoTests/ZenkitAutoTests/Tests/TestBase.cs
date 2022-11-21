@@ -2,18 +2,13 @@
 
 namespace ZenkitAutoTests;
 
-public class TestBase : IDisposable
+public class TestBase
 {
 	protected AppManager app;
 
 	public TestBase()
 	{
-		app = new AppManager();
-	}
-
-	public void Dispose()
-	{
-		app.Stop();
+		app = AppManager.GetInstance();
 	}
 
 	protected void Authorization()

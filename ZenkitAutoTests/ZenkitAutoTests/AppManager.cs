@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using System.Threading;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 
 namespace ZenkitAutoTests;
@@ -12,7 +14,7 @@ public class AppManager
 	public string BaseUrl => _baseUrl;
 	public SecretsReader SecretsReader => _secretsReader;
 
-	public AppManager()
+	private AppManager()
 	{
 		_driver = new FirefoxDriver();
 		_driver.Manage().Window.Maximize();
@@ -23,15 +25,34 @@ public class AppManager
 		_secretsReader = new SecretsReader();
 	}
 
-	public void Stop()
+	public static AppManager GetInstance()
 	{
-		Driver.Quit();
-	}
+		if (!app.IsValueCreated)
+		{
+			AppManager newInstance = new AppManager();
+			app.Value = newInstance;
+		}
 
+		return app.Value;
+	}
+	
 	private IWebDriver _driver { get; }
 	private NavigationHelper _navigationHelper;
 	private LoginHelper _loginHelper;
 	private TaskHelper _taskHelper;
 	private string _baseUrl;
 	private SecretsReader _secretsReader { get; }
+	private static ThreadLocal<AppManager> app = new();
+
+	~AppManager()
+	{
+		try
+		{
+			Driver.Quit();
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+		}
+	}
 }

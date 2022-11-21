@@ -2,14 +2,14 @@
 
 namespace ZenkitAutoTests.Tests;
 
-public class AddTaskTest : TestBase
+public class DeleteTaskTest : TestBase
 {
 	[Fact]
-	public void AddTask()
+	public void DeleteTask()
 	{
 		app.NavigationHelper.GoToTasksPage();
-		var task = new TaskData {Name = "Автотестирование №4"};
-		app.TaskHelper.AddTask(task);
+		var task = new TaskData {Name = "Автотестирование №3"};
+		app.TaskHelper.DeleteTask(task);
 
 		var createdTask = app.TaskHelper.GetCreatedTask();
 
