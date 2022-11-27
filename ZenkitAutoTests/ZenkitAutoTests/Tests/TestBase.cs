@@ -10,12 +10,4 @@ public class TestBase
 	{
 		app = AppManager.GetInstance();
 	}
-
-	protected void Authorization()
-	{
-		app.NavigationHelper.GoToLoginPage();
-
-		var user = app.SecretsReader.GetAccountCredentialsFromSecretJson();
-		app.LoginHelper.Login(user);
-	}
 }

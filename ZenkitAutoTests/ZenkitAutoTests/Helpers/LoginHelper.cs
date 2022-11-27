@@ -8,7 +8,7 @@ public class LoginHelper : HelperBase
 	public LoginHelper(AppManager manager) : base(manager)
 	{
 	}
-	
+
 	public void Login(AccountData user)
 	{
 		var usernameField = FindElementWhenItsEnabled(By.Name("username"));
@@ -18,6 +18,12 @@ public class LoginHelper : HelperBase
 		passwordField.SendKeys(user.Password);
 
 		FindElementWhenItsEnabled(By.CssSelector(".zenkit-login-button-row zenkit-ui-list-row-title")).Click();
-		Thread.Sleep(3000);
+	}
+
+	public bool IsLoginSuccess()
+	{
+		var myWorkSpace = FindElementWhenItsEnabled(
+			By.CssSelector(".zenkit-workspaces-workspace-container:nth-child(1) .zenkit-workspaces__workspace-name"));
+		return myWorkSpace.Enabled;
 	}
 }
