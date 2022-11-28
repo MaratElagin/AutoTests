@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZenkitAutoTests", "ZenkitAutoTests\ZenkitAutoTests.csproj", "{1265F5C9-44A8-4930-99AB-D637636498D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGenerator", "TestDataGenerator\TestDataGenerator.csproj", "{60DC0C4C-878D-4078-BD72-A3DB4B077191}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{1265F5C9-44A8-4930-99AB-D637636498D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1265F5C9-44A8-4930-99AB-D637636498D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1265F5C9-44A8-4930-99AB-D637636498D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60DC0C4C-878D-4078-BD72-A3DB4B077191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60DC0C4C-878D-4078-BD72-A3DB4B077191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60DC0C4C-878D-4078-BD72-A3DB4B077191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60DC0C4C-878D-4078-BD72-A3DB4B077191}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
