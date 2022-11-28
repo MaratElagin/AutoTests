@@ -7,13 +7,13 @@ public class NavigationHelper : HelperBase
 	public NavigationHelper(AppManager manager) : base(manager)
 	{
 	}
-	
+
 	public void GoToLoginPage() => RedirectTo("https://zenkit.com/login");
 
 	public void GoToTasksPage()
 	{
 		// Мои задачи
-		var myTasks = FindElementWhenItsEnabled(By.CssSelector(".zenkit-list-badge_list-name"));
+		var myTasks = FindElementWhenItsEnabled(By.XPath("//a[contains(@class, 'zenkit-undraggable-link')]"));
 		myTasks.Click();
 	}
 

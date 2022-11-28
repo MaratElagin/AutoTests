@@ -70,21 +70,12 @@ public class TaskHelper : HelperBase
 	private bool TryOpenTaskByName(string name)
 	{
 		var allTasks = GetAllTasks();
-		foreach (var task in allTasks)
-		{
-			var c = task.FindElement(By.XPath(".//a/div[2]/div/span/span"));
-			var find = c.Text == name;
-		}
-
 		var taskName =
-			allTasks.First(el => el.FindElement(By.XPath(".//a/div[2]/div/span/span")).Text == name);
-		var t = allTasks.First();
-		var k = t.FindElement(By.XPath(".//a/div[2]/div/span/span"));
-		// var taskName = allTasks.FirstOrDefault(el =>
-		// 	el.FindElement(By.XPath(".//span[contains(@class, 'zenkit-badge-element-content')]")).Text == name);
-		if (t == null)
+			allTasks.FirstOrDefault(el => el.FindElement(By.XPath(".//a/div[2]/div/span/span")).Text == name);
+
+		if (taskName == null)
 			return false;
-		t.FindElement(By.XPath("./parent::*/parent::*/parent::*/parent::*")).Click();
+		taskName.FindElement(By.XPath(".//ancestor::a")).Click();
 		return true;
 	}
 

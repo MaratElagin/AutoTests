@@ -14,6 +14,7 @@ public class DeleteTaskTest : TestBase
 		var task = new TaskData {Name = "Автотестирование №3"};
 		// Act
 		app.TaskHelper.DeleteTask(task);
+		app.NavigationHelper.ReturnToTasksPage();
 		var isTaskDeleted = app.TaskHelper.IsTaskDeleted(task);
 
 		// Assert
