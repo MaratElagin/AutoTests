@@ -13,9 +13,10 @@ public class SecretsReader
         _configuration = builder.Build();
     }
 
-    public AccountData GetAccountCredentialsFromSecretJson()
+    public AccountData GetAccountCredentialsFromSecretJson(bool isValid)
     {
-        return _configuration.GetSection("accountData").Get<AccountData>() 
-               ?? throw new InvalidOperationException("Can't get accountData from secrets.json");
+        var section = isValid ? "validAccountData" : "invalidAccountData";
+        return _configuration.GetSection(section).Get<AccountData>()
+               ?? throw new InvalidOperationException($"Can't get '{section}' from secrets.json");
     }
 }

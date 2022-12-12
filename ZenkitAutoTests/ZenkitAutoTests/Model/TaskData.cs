@@ -6,7 +6,7 @@ public record TaskData
 {
 	public string Name { get; set; }
 
-	[MaxLength(50)] public string? Description { get; }
+	[MaxLength(50)] public string? Description { get; set; }
 
 	public TaskData()
 	{

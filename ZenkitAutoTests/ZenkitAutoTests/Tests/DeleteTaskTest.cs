@@ -4,18 +4,18 @@ using Xunit.Extensions.Ordering;
 namespace ZenkitAutoTests.Tests;
 
 [Order(3)]
-public class DeleteTaskTest : TestBase
+public class DeleteTaskTest : AuthBase
 {
 	[Fact]
 	public void DeleteTask()
 	{
 		// Arrange
-		app.NavigationHelper.ReturnToTasksPage();
-		var task = new TaskData {Name = "Автотестирование №3"};
+		App.NavigationHelper.GoToTasksPage();
+		var task = new TaskData {Name = "Автотестирование №6"};
 		// Act
-		app.TaskHelper.DeleteTask(task);
-		app.NavigationHelper.ReturnToTasksPage();
-		var isTaskDeleted = app.TaskHelper.IsTaskDeleted(task);
+		App.TaskHelper.DeleteTask(task);
+		App.NavigationHelper.ReturnToTasksPage();
+		var isTaskDeleted = App.TaskHelper.IsTaskDeleted(task);
 
 		// Assert
 		Assert.True(isTaskDeleted);

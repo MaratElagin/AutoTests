@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System.Threading;
+using OpenQA.Selenium;
 
 namespace ZenkitAutoTests;
 
@@ -8,10 +9,11 @@ public class NavigationHelper : HelperBase
 	{
 	}
 
-	public void GoToLoginPage() => RedirectTo("https://zenkit.com/login");
+	public void GoToLoginPage() => RedirectTo("https://base.zenkit.com/login");
 
 	public void GoToTasksPage()
 	{
+		Thread.Sleep(2000);
 		// Мои задачи
 		var myTasks = FindElementWhenItsEnabled(By.XPath("//a[contains(@class, 'zenkit-undraggable-link')]"));
 		myTasks.Click();
@@ -19,8 +21,7 @@ public class NavigationHelper : HelperBase
 
 	public void ReturnToTasksPage()
 	{
-		var myTasks = FindElementWhenItsEnabled(By.CssSelector(".zenkit-entry-details__navigation-link"));
-		myTasks.Click();
+		Driver.Navigate().Back();
 	}
 
 	private void RedirectTo(string url)

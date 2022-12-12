@@ -27,16 +27,32 @@ public class TaskHelper : HelperBase
 		textArea.Click();
 		textArea.SendKeys(task.Name);
 		// Создать
-		Driver.FindElement(By.CssSelector(".zenkit-add-item-control--active .zenkit-add-item-control__button"))
+		Thread.Sleep(1000);
+		FindElementWhenItsEnabled(By.XPath(
+				"/html/body/div[5]/div/div/div/div/div/div/div/zenkit-kanban-view/div/div/div[1]/div/div[1]/div/div[2]/zenkit-add-item-control/div/div[2]/div"))
 			.Click();
+	}
+
+	public void AddTaskWithDescription(TaskData task)
+	{
+		AddTask(task);
+		OpenLastCreatedTask();
+
+		FindElementWhenItsEnabled(By.CssSelector("zenkit-ui-list-row-title > .zenkit-control-empty-message")).Click();
+		FindElementWhenItsEnabled(By.CssSelector(".zenkit-control-textfield-input-multiline"))
+			.SendKeys(task.Description);
+		FindElementWhenItsEnabled(By.CssSelector(".zenkit-entry-detail__list")).Click();
+
+		AppManager.NavigationHelper.ReturnToTasksPage();
 	}
 
 	public void DeleteTask(TaskData task)
 	{
 		if (!TryOpenTaskByName(task.Name))
 			throw new InvalidOperationException($"There is no task with {task.Name}");
-		Driver.FindElement(By.CssSelector(".zi-options3")).Click();
-		Driver.FindElement(By.CssSelector(".zenkit-ui-list__row--color-danger zenkit-ui-list-row-title")).Click();
+		FindElementWhenItsEnabled(By.CssSelector(".zi-options3")).Click();
+		FindElementWhenItsEnabled(By.CssSelector(".zenkit-ui-list__row--color-danger zenkit-ui-list-row-title"))
+			.Click();
 	}
 
 	public TaskData GetCreatedTask()
@@ -46,7 +62,7 @@ public class TaskHelper : HelperBase
 		string? description;
 		try
 		{
-			description = FindElementWhenItsEnabled(By.TagName("//zenkit-ui-list-row-title/div/div")).Text;
+			description = FindElementWhenItsEnabled(By.CssSelector(".zenkit-control-textfield-read-content")).Text;
 		}
 		catch (Exception)
 		{
